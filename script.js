@@ -2,6 +2,13 @@
 
 let box = document.getElementById("box");
 
-// rimuovo il contenuto della variabile 
+// Dichiaro la funzione
 
-box.remove();
+function colorChange () {
+    box.style.backgroundColor = "red";
+}
+
+//Eseguiamo la funzione 
+
+box.addEventListener("mouseover", colorChange);
+
