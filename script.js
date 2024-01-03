@@ -4,10 +4,10 @@ let box = document.getElementById("box");
 
 // Definisco la funzione
 
-function changeColor() {
-    box.style.backgroundColor = "blue";
+function insertText() {
+    box.innerHTML = "Hello World!";
 }
 
 // Eseguo la funzione
 
-changeColor();
+insertText();
