@@ -1,16 +1,7 @@
-// Creo un nuovo elemento p
+// Dichiaro la variabile
 
-let addP = document.createElement('p');
+let box = document.getElementById("box");
 
-// Creo un contenuto testuale (nodo di testo/nodo testuale)
+// rimuovo il contenuto della variabile 
 
-let text = document.createTextNode('Nuovo paragrafo');
-
-
-// Associo/appendo il nuovo nodo testuale all'elemento p
-
-addP.appendChild(text);
-
-// Associo/appendo il paragrafo con il suo relativo contenuto al body
-
-document.body.appendChild(addP);
+box.remove();
