@@ -1,13 +1,16 @@
-// Dichiaro la variabile 
+// Creo un nuovo elemento p
 
-let box = document.getElementById("box");
+let addP = document.createElement('p');
 
-// Definisco la funzione
+// Creo un contenuto testuale (nodo di testo/nodo testuale)
 
-function insertText() {
-    box.innerHTML = "Hello World!";
-}
+let text = document.createTextNode('Nuovo paragrafo');
 
-// Eseguo la funzione
 
-insertText();
+// Associo/appendo il nuovo nodo testuale all'elemento p
+
+addP.appendChild(text);
+
+// Associo/appendo il paragrafo con il suo relativo contenuto al body
+
+document.body.appendChild(addP);
