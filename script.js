@@ -1,14 +1,31 @@
-// Dichiaro la variabile
+// Dichiaro le variabili
 
-let box = document.getElementById("box");
+let btn = document.getElementById('btn');
 
-// Dichiaro la funzione
+let paragraph = document.createElement('p');
 
-function colorChange () {
-    box.style.backgroundColor = "red";
+let text = document.createTextNode('Hello World!');
+
+function onClick() {
+
+    // Verifico se il paragrafo è già presente
+
+    if (btn.contains(paragraph)) {
+
+        // Se presente, lo rimuovo
+
+        btn.removeChild(paragraph);
+
+    } else {
+
+        // Altrimenti, lo aggiungo
+
+        paragraph.appendChild(text);
+
+        btn.appendChild(paragraph);
+    }
 }
 
-//Eseguiamo la funzione 
+// Eseguo l'evento click
 
-box.addEventListener("mouseover", colorChange);
-
+btn.addEventListener('click', onClick);
