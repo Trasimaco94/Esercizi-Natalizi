@@ -1,7 +1,7 @@
-let text = document.getElementById("text");
+let btn = document.getElementById("btn");
 
-function changeColor() {
-    text.style.color = "blue";
+function disclaimer() {
+   alert("Hai premuto");
 }
 
-text.addEventListener("click", changeColor);
+btn.addEventListener("click", disclaimer);
