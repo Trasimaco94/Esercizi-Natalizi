@@ -1,7 +1,7 @@
-let btn = document.getElementById("btn");
+let btn = document.getElementsByClassName("btn")[0];
 
-function disclaimer() {
-   alert("Hai premuto");
+function onClick () {
+btn.style.backgroundColor = 'red';
 }
 
-btn.addEventListener("click", disclaimer);
+btn.addEventListener("click", onClick);
