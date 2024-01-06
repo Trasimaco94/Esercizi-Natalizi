@@ -1,18 +1,25 @@
-//Con querySelectorAll posso trattare tutti gli elementi li come Array
+// Dichiaro le variabili
+let text = document.getElementById('text');
+let btn = document.getElementById('btn');
+let list = document.getElementById('list');
 
-let elements = document.querySelectorAll('li');
+// Definisco la funzione
+function addText() {
+    // Creo un nuovo elemento li
+    let newLi = document.createElement('li');
 
-// Funzione da dichiarare che ha un parametro. Verrà  utilizzato nel forEach
-function enhancedElements(element) {
-    element.style.height = "100px";
-    element.style.width = "100px";
-    element.style.color = "red";
+    // Prendo il valore dell'input
+    let content = text.value;
+
+    // Aggiungo il valore come testo all'elemento li
+    newLi.appendChild(document.createTextNode(content));
+
+    // Aggiungo l'elemento li alla lista
+    list.appendChild(newLi);
+
+    // Pulisco l'input
+    text.value = "";
 }
-// Con forEach creiamo una funzione anonima che si porta dietro però il parametro della funzione precedente
-elements.forEach(function (element) {
 
-    element.addEventListener('mouseover', function () {
-        // La funzione che l'evento deve eseguire è quella anonima, che avrà al suo interno quella precedente
-        enhancedElements(element);
-    });
-});
+// Eseguo la funzione
+btn.addEventListener('click', addText);
