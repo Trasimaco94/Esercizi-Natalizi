@@ -1,25 +1,21 @@
 // Dichiaro le variabili
-let text = document.getElementById('text');
+
 let btn = document.getElementById('btn');
-let list = document.getElementById('list');
+
+let counter = document.getElementById('counter');
 
 // Definisco la funzione
-function addText() {
-    // Creo un nuovo elemento li
-    let newLi = document.createElement('li');
 
-    // Prendo il valore dell'input
-    let content = text.value;
+function onClick() {
 
-    // Aggiungo il valore come testo all'elemento li
-    newLi.appendChild(document.createTextNode(content));
+    let content = counter.innerHTML;
 
-    // Aggiungo l'elemento li alla lista
-    list.appendChild(newLi);
+    let increase = parseInt(content) + 1;
 
-    // Pulisco l'input
-    text.value = "";
+    counter.innerHTML = increase;
+    
 }
 
 // Eseguo la funzione
-btn.addEventListener('click', addText);
+
+btn.addEventListener('click', onClick);
