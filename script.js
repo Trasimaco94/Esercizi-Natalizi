@@ -1,13 +1,16 @@
 // Dichiaro le variabili
 
-let box = document.getElementById('box');
+let img1 = document.getElementById('img1');
+
+let img2 = document.getElementById('img2');
 
 //Definisco la funzione
 
-function changeColor () {
-box.style.backgroundColor = "blue"
+function changeImg1 () {
+img1.style.width = "100px";
+img1.style.height = "100px";
 }
 
 //Eseguo la funzione
 
-box.addEventListener('mouseout', changeColor);
+img2.addEventListener('mouseover', changeImg1);
