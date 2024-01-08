@@ -1,17 +1,31 @@
-// Dichiaro le variabili
+    // Dichiaro le variabili
 
-let btn = document.getElementById('btn');
+    let textFilter = document.getElementById('textFilter');
 
-let box = document.getElementById('box');
+    let text = document.getElementById('text');
 
-//Definisco la funzione
+    // Definisco la funzione
 
-function moveBox () {
-box.style.marginLeft = "50px";
-}
+    function textRemove() {
 
+      let inputText = textFilter.value;
 
+      let paragraphText = text.innerText;
 
-//Eseguo la funzione
+      function isCharNotInInput(char) {
+        return inputText.indexOf(char) === -1;
+      }
 
-btn.addEventListener('click', moveBox);
+      let paragraphArray = paragraphText.split('');
+
+      let filteredArray = paragraphArray.filter(isCharNotInInput);
+
+      let newParagraphText = filteredArray.join('');
+
+      text.innerText = newParagraphText;
+    }
+
+    // Eseguo la funzione quando si verifica l'evento di input nell'input
+    
+    textFilter.addEventListener('input', textRemove);
+
