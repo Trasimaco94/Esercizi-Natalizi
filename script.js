@@ -1,21 +1,13 @@
 // Dichiaro le variabili
 
-let btn = document.getElementById('btn');
+let box = document.getElementById('box');
 
-let counter = document.getElementById('counter');
+//Definisco la funzione
 
-// Definisco la funzione
-
-function onClick() {
-
-    let content = counter.innerHTML;
-
-    let increase = parseInt(content) + 1;
-
-    counter.innerHTML = increase;
-    
+function changeColor () {
+box.style.backgroundColor = "blue"
 }
 
-// Eseguo la funzione
+//Eseguo la funzione
 
-btn.addEventListener('click', onClick);
+box.addEventListener('mouseout', changeColor);
