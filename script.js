@@ -1,31 +1,17 @@
-    // Dichiaro le variabili
+//Funzione che include le variabili
+function visibility() {
 
-    let textFilter = document.getElementById('textFilter');
+    // Variabili
+    const check = document.getElementById('check');
 
-    let text = document.getElementById('text');
+    const text = document.getElementById('text');
 
-    // Definisco la funzione
+    // Imposto l'evento change sul checkbox e uso una funzione anonima
+    check.addEventListener('change', function() {
+        // Mostra o nascondi il paragrafo in base allo stato del checkbox
+        text.style.display = check.checked ? 'block' : 'none';
+    });
+}
 
-    function textRemove() {
-
-      let inputText = textFilter.value;
-
-      let paragraphText = text.innerText;
-
-      function isCharNotInInput(char) {
-        return inputText.indexOf(char) === -1;
-      }
-
-      let paragraphArray = paragraphText.split('');
-
-      let filteredArray = paragraphArray.filter(isCharNotInInput);
-
-      let newParagraphText = filteredArray.join('');
-
-      text.innerText = newParagraphText;
-    }
-
-    // Eseguo la funzione quando si verifica l'evento di input nell'input
-    
-    textFilter.addEventListener('input', textRemove);
-
+// Chiamata alla funzione al caricamento della pagina
+document.addEventListener('DOMContentLoaded', visibility);
