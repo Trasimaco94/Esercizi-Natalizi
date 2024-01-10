@@ -1,138 +1,78 @@
 # LE PARTI DEL CODICE
 
-1. **Dichiarazione delle variabili:**
-   ```javascript
-   let timer = document.getElementById('timer');
-   let btn = document.getElementById('btn');
-   let isTimerRunning = false;
-   let intervalId;
-   ```
-   - `timer`: Ottiene il riferimento all'elemento HTML con l'id "timer", che presumibilmente è un elemento `<h2>` contenente il testo del timer.
-   - `btn`: Ottiene il riferimento all'elemento HTML con l'id "btn", che è il tuo bottone "Play/Stop".
-   - `isTimerRunning`: Una variabile booleana che tiene traccia dello stato del timer (in esecuzione o meno).
-   - `intervalId`: Conserva l'ID dell'intervallo restituito da `setInterval` per poterlo fermare successivamente con `clearInterval`.
-
-2. **Dichiarazione della funzione `playStop`:**
-   ```javascript
-   function playStop() {
-       if (isTimerRunning) {
-           clearInterval(intervalId);
-           isTimerRunning = false;
-       } else {
-           updateTimer(); // Chiama la funzione updateTimer una volta prima di impostare l'intervallo
-           intervalId = setInterval(function () {
-               updateTimer();
-           }, 1000);
-           isTimerRunning = true;
-       }
-   }
-   ```
-   - La funzione `playStop` è chiamata quando viene cliccato il bottone "Play/Stop".
-   - Controlla se il timer è in esecuzione (`isTimerRunning` è vero) o meno. Se è in esecuzione, lo ferma usando `clearInterval` e imposta `isTimerRunning` a `false`.
-   - Se il timer non è in esecuzione, chiama `updateTimer()` una volta per aggiornare immediatamente il timer, poi avvia l'intervallo con `setInterval` che chiama `updateTimer` ogni secondo (1000 millisecondi) e imposta `isTimerRunning` a `true`.
-
-3. **Dichiarazione della funzione `updateTimer`:**
-   ```javascript
-   function updateTimer() {
-       let timerText = timer.innerHTML;
-       let timeArray = timerText.split(':');
-       let minutes = parseInt(timeArray[0]);
-       let seconds = parseInt(timeArray[1]);
-
-       seconds++;
-
-       if (seconds === 60) {
-           seconds = 0;
-           minutes++;
-       }
-
-       let formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-       let formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-
-       timer.innerHTML = formattedMinutes + ':' + formattedSeconds;
-   }
-   ```
-   - Estrae il testo corrente del timer dall'HTML, lo divide in minuti e secondi.
-   - Incrementa i secondi e, se necessario, aggiorna i minuti.
-   - Formatta i minuti e i secondi in due cifre (aggiungendo uno zero se sono inferiori a 10).
-   - Aggiorna l'HTML del timer con il nuovo valore.
-
-4. **Eseguo:**
-   ```javascript
-   btn.addEventListener('click', playStop);
-   ```
-   - Aggiunge un listener al bottone "Play/Stop" che chiama la funzione `playStop` quando il bottone viene cliccato.
-
-In breve, il codice utilizza `setInterval` per incrementare il timer ogni secondo quando il pulsante viene premuto, e `clearInterval` per fermare il timer quando il pulsante viene premuto nuovamente. La funzione `updateTimer` gestisce l'aggiornamento del timer.
-
-
-# LE FUNZIONI NEL DETTAGLIO
-
-### Funzione `playStop`:
-
 ```javascript
-function playStop() {
-    if (isTimerRunning) {
-        clearInterval(intervalId);
-        isTimerRunning = false;
-    } else {
-        updateTimer(); // Chiama la funzione updateTimer una volta prima di impostare l'intervallo
-        intervalId = setInterval(function () {
-            updateTimer();
-        }, 1000);
-        isTimerRunning = true;
-    }
+// Funzione per gestire l'evento mousemove
+function handleMouseMove(event) {
+    // Ottieni le coordinate della posizione del mouse
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    // Aggiorna il testo nell'elemento HTML
+    document.getElementById('coordinates').textContent = `X: ${mouseX}, Y: ${mouseY}`;
 }
+
+// Aggiungi un ascoltatore per l'evento mousemove all'interno del documento
+document.addEventListener('mousemove', handleMouseMove);
 ```
 
-1. **Condizione `if (isTimerRunning):`**
-   - Questa condizione verifica se il timer è in esecuzione. Se `isTimerRunning` è `true`, significa che il timer è in esecuzione.
+1. **Definizione della funzione `handleMouseMove`**:
+   - La funzione `handleMouseMove` è una funzione che gestirà l'evento `mousemove` quando si verifica.
+   - L'evento `mousemove` fornisce informazioni sulla posizione del mouse all'interno della finestra del browser.
 
-2. **Blocco se il timer è in esecuzione:**
-   - Se il timer è in esecuzione, si ferma utilizzando `clearInterval(intervalId)`, dove `intervalId` è l'ID dell'intervallo restituito da `setInterval`.
-   - Imposta quindi `isTimerRunning` a `false`, indicando che il timer è ora fermo.
+2. **Parametro `event`**:
+   - La funzione accetta un parametro `event`, che rappresenta l'oggetto evento associato all'evento `mousemove`.
+   - Questo oggetto contiene molte informazioni, tra cui le coordinate del mouse.
 
-3. **Blocco se il timer non è in esecuzione:**
-   - Se il timer non è in esecuzione, chiama `updateTimer()` una volta per assicurarsi che il timer sia aggiornato immediatamente quando inizia.
-   - Avvia l'intervallo con `setInterval`, che chiama la funzione `updateTimer` ogni secondo (1000 millisecondi).
-   - Imposta `isTimerRunning` a `true`, indicando che il timer è ora in esecuzione.
+3. **Ottieni le coordinate del mouse**:
+   - `event.clientX` restituisce la coordinata X del mouse rispetto al bordo sinistro della finestra del browser.
+   - `event.clientY` restituisce la coordinata Y del mouse rispetto al bordo superiore della finestra del browser.
+   - Le coordinate vengono quindi memorizzate nelle variabili `mouseX` e `mouseY`.
 
-### Funzione `updateTimer`:
+4. **Aggiornamento dell'elemento HTML**:
+   - `document.getElementById('coordinates')` seleziona l'elemento HTML con l'id "coordinates".
+   - `textContent` viene utilizzato per impostare il testo all'interno di quell'elemento.
+   - Il testo viene impostato con le coordinate del mouse, utilizzando la stringa di template `${mouseX}, ${mouseY}`.
+
+5. **Aggiunta di un ascoltatore per l'evento mousemove**:
+   - `document.addEventListener('mousemove', handleMouseMove)` aggiunge un ascoltatore all'intero documento per l'evento `mousemove`.
+   - Ogni volta che il mouse si muove, l'evento `mousemove` verrà catturato e la funzione `handleMouseMove` verrà chiamata, aggiornando le coordinate del mouse nell'elemento HTML.
+
+In questo modo, ogni volta che muovi il mouse sulla pagina, le coordinate vengono aggiornate e visualizzate dinamicamente nell'elemento con id "coordinates".
+
+# IL TEMPLATE LITERAL
+
+L'utilizzo del simbolo del dollaro `$` all'interno di una stringa preceduto da una parentesi graffa `{}` è una sintassi chiamata "template literals" o "template strings" in JavaScript. Questa sintassi consente di incorporare espressioni JavaScript direttamente all'interno di una stringa. Quando una variabile o un'espressione è racchiusa tra `${}` all'interno di una stringa delimitata con backticks (`), verrà valutata e il risultato verrà inserito nella stringa.
+
+Nel nostro caso:
 
 ```javascript
-function updateTimer() {
-    let timerText = timer.innerHTML;
-    let timeArray = timerText.split(':');
-    let minutes = parseInt(timeArray[0]);
-    let seconds = parseInt(timeArray[1]);
-
-    seconds++;
-
-    if (seconds === 60) {
-        seconds = 0;
-        minutes++;
-    }
-
-    let formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-    let formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-
-    timer.innerHTML = formattedMinutes + ':' + formattedSeconds;
-}
+document.getElementById('coordinates').textContent = `X: ${mouseX}, Y: ${mouseY}`;
 ```
 
-1. **Estrazione dei valori correnti del timer:**
-   - Ottiene il testo corrente del timer dall'HTML e lo divide in minuti e secondi.
+- Le coordinate del mouse (`mouseX` e `mouseY`) vengono inserite all'interno della stringa.
+- `${mouseX}` viene valutato e il suo valore viene inserito nella posizione della stringa in cui appare.
+- Lo stesso vale per `${mouseY}`.
 
-2. **Aggiornamento dei secondi:**
-   - Incrementa i secondi.
+L'uso di template literals rende il codice più leggibile e flessibile rispetto alla concatenazione tradizionale delle stringhe, specialmente quando devi incorporare variabili o espressioni complesse all'interno delle stringhe.
 
-3. **Gestione del passaggio ai minuti successivi:**
-   - Se i secondi raggiungono 60, li reimposta a 0 e incrementa i minuti.
+Se non volessi utilizzare il template literal, potresti scrivere il codice utilizzando la concatenazione di stringhe. Ecco come potrebbe apparire il codice senza template literal:
 
-4. **Formattazione dei minuti e secondi:**
-   - Formatta i minuti e i secondi in due cifre aggiungendo uno zero davanti se sono inferiori a 10.
+```javascript
+// Funzione per gestire l'evento mousemove
+function handleMouseMove(event) {
+    // Ottieni le coordinate della posizione del mouse
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
 
-5. **Aggiornamento dell'HTML del timer:**
-   - Aggiorna l'HTML del timer con i nuovi valori formattati.
+    // Crea la stringa di coordinate senza template literal
+    const coordinatesText = 'X: ' + mouseX + ', Y: ' + mouseY;
 
-In sintesi, `updateTimer` si occupa dell'aggiornamento del timer, incrementando i secondi e gestendo il passaggio ai minuti successivi. La funzione `playStop` controlla se il timer è in esecuzione e lo avvia o lo ferma di conseguenza, assicurandosi che l'intervallo venga gestito correttamente.
+    // Aggiorna il testo nell'elemento HTML
+    document.getElementById('coordinates').textContent = coordinatesText;
+}
+
+// Aggiungi un ascoltatore per l'evento mousemove all'interno del documento
+document.addEventListener('mousemove', handleMouseMove);
+```
+
+In questo esempio, la stringa `coordinatesText` è costruita concatenando le variabili `mouseX` e `mouseY` con le stringhe statiche. Questo è equivalente all'uso del template literal, ma è più verboso e meno leggibile, specialmente quando hai espressioni più complesse da inserire nelle stringhe. L'uso del template literal con `${}` è generalmente preferito per migliorare la leggibilità del codice.
