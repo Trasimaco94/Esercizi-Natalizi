@@ -1,18 +1,16 @@
-// Funzione per gestire l'evento mousemove
-function handleMouseMove(event) {
+// Funzione per impostare l'immagine di sfondo in base all'opzione selezionata
 
-    // Ottieni le coordinate della posizione del mouse
+function setBackground() {
 
-    const mouseX = event.clientX;
+    const imageSelector = document.getElementById('backImg').value;
+    
+    const backgroundElement = document.getElementById('backDiv');
+    
+backgroundElement.style.backgroundImage = 'url(' + imageSelector + ')';
+    
+                
+    };
 
-    const mouseY = event.clientY;
+    // Chiamare la funzione una volta per impostare l'immagine di sfondo iniziale
+    setBackground();
 
-    // Aggiorna il testo nell'elemento HTML
-
-    document.getElementById('coordinates').textContent =
-     `X: ${mouseX}, Y: ${mouseY}`;
-}
-
-// Aggiungi un ascoltatore per l'evento mousemove all'interno del documento
-
-document.addEventListener('mousemove', handleMouseMove);

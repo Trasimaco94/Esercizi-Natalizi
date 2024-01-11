@@ -1,9 +1,9 @@
+#box{
+    display: flex-column;
+}
 
-
-body {
-    background-color: rgb(111, 197, 168);}
-
-
-
-
-
+#backDiv {
+    width: 761px;
+    background-size: cover;
+    height: 500px;
+}
