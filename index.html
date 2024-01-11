@@ -10,15 +10,26 @@
 
 <body>
 
-    <h2>
-        Mouse Coordinates:
-    </h2>
+    <div id="box">
 
-    <p id="coordinates">
-        
-    </p>
+        <label for="backImg">
+            Seleziona uno sfondo:
+        </label>
 
-    
+        <select id="backImg" name="backImg" onchange="setBackground()">
+
+            <option value="fantasy.jpg">Fantasy</option>
+
+            <option value="Path-of-the-Planebreaker-01-Federico-Musetti.jpg">Plane</option>
+
+        </select>
+
+        <div id="backDiv">
+
+        </div>
+
+    </div>
+
     <script src="script.js"></script>
 </body>
 
